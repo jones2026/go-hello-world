@@ -9,6 +9,8 @@ import (
 	"time"
 
 	"github.com/jones2026/go-hello-world/healthz"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promauto"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
@@ -17,20 +19,31 @@ type hello struct {
 	Time string
 }
 
-type config struct {
+func recordMetrics() {
+	go func() {
+		for {
+			opsProcessed.Inc()
+			time.Sleep(2 * time.Second)
+		}
+	}()
 }
+
+var (
+	opsProcessed = promauto.NewCounter(prometheus.CounterOpts{
+		Name: "myapp_processed_ops_total",
+		Help: "The total number of processed events",
+	})
+)
 
 func main() {
 	log.Println("Starting app...")
+
 	hostname, err := os.Hostname()
 	if err != nil {
 		panic(err)
 	}
 
-	http.Handle("/metrics", promhttp.Handler())
-	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
-
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	defaultHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		t := time.Now().UTC()
 		stamp := ("The current machine timestamp in UTC: " + t.Format("2006-01-02T15:04:05.999999-07:00"))
 		// stamp
@@ -39,7 +52,7 @@ func main() {
 		fmt.Fprintf(w, stamp)
 	})
 
-	http.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
+	helloHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		hello := hello{"Anonymous", time.Now().Format(time.Stamp)}
 		templates := template.Must(template.ParseFiles("./templates/hello-template.html"))
 		if name := r.FormValue("name"); name != "" {
@@ -49,7 +62,9 @@ func main() {
 		if err := templates.ExecuteTemplate(w, "hello-template.html", hello); err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 		}
+		w.Write([]byte("Pull"))
 	})
+
 	hc := &healthz.Config{
 		Hostname: hostname,
 	}
@@ -58,7 +73,15 @@ func main() {
 		log.Fatal(err)
 	}
 
-	http.Handle("/healthz", healthzHandler)
+	recordMetrics()
+
+	http.Handle("/stylesheets/", prometheus.InstrumentHandler(
+		"stylesheets", http.FileServer(http.Dir("./static"))))
+
+	http.Handle("/", prometheus.InstrumentHandler("default", defaultHandler))
+	http.Handle("/hello", prometheus.InstrumentHandler("hello", helloHandler))
+	http.Handle("/healthz", prometheus.InstrumentHandler("healthz", healthzHandler))
+	http.Handle("/metrics", promhttp.Handler())
 
 	fmt.Println("Listening")
 	fmt.Println(http.ListenAndServe(":80", nil))
