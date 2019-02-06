@@ -9,7 +9,7 @@ import (
 )
 
 func TestHealthCheckHandlerErrorThrowing(t *testing.T) {
-	req, err := http.NewRequest("GET", "/healthz?errorType=FakeError", nil)
+	req, err := http.NewRequest("GET", "/healthz?error=FakeError", nil)
 	if err != nil {
 		t.Fatal(err)
 	}

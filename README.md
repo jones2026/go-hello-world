@@ -26,5 +26,5 @@ Start your image:
 |:-----:|:-----:|:----|:----------|
 |/||200|Replies with current timestamp in UTC format
 |/hello|name=${INSERT_NAME}|200|Will prompt with an formatted HTML page greeting using a non-embedded CSS file
-|/healthz|errorType=${INSERT_ERROR}|200/500|replies with 500 error if errorType is provided, otherwise request succeeded
+|/healthz|error=${INSERT_ERROR}|200/500|replies with 500 error if error is provided, otherwise request succeeded
 |/metrics||200|Prometheus metrics endpoint
