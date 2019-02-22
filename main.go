@@ -42,11 +42,14 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	
+	versionHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {		
+		fmt.Fprintf(w, "1.0")
+	})
 
 	defaultHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		t := time.Now().UTC()
 		stamp := ("The current machine timestamp in UTC: " + t.Format("2006-01-02T15:04:05.999999-07:00"))
-		// stamp
 		fmt.Println(stamp)
 		fmt.Printf("Received %v request for %v\n", r.Method, r.URL)
 		fmt.Fprintf(w, stamp)
@@ -79,6 +82,7 @@ func main() {
 		"stylesheets", http.FileServer(http.Dir("./static"))))
 
 	http.Handle("/", prometheus.InstrumentHandler("default", defaultHandler))
+	http.Handle("/version", prometheus.InstrumentHandler("version", versionHandler))
 	http.Handle("/hello", prometheus.InstrumentHandler("hello", helloHandler))
 	http.Handle("/healthz", prometheus.InstrumentHandler("healthz", healthzHandler))
 	http.Handle("/metrics", promhttp.Handler())
