@@ -1,1 +1,6 @@
 .git
+.drone.yml
+README.md
+LICENSE
+Dockerfile
+.dockerignore
