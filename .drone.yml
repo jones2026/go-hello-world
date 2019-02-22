@@ -8,6 +8,15 @@ steps:
   commands:
   - go test
   
+- name: build
+  image: golang:1.11
+  commands:
+  - CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags '-extldflags "-static"' -o main .
+  when:
+    event:
+    - push
+    - tag
+  
 - name: publish
   image: plugins/docker
   settings:
