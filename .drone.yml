@@ -12,7 +12,7 @@ steps:
   image: plugins/docker
   settings:
     repo: jones2026/go-hello-world
-    auto_tag: true
+    tags: latest
     username: jones2026
     password:
       from_secret: docker_password
