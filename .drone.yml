@@ -12,6 +12,7 @@ steps:
   image: plugins/docker
   settings:
     repo: jones2026/go-hello-world
+    cache_from: jones2026/go-hello-world:latest
     tags: latest
     username:
       from_secret: docker_username
