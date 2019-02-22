@@ -44,7 +44,7 @@ func main() {
 	}
 	
 	versionHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {		
-		fmt.Fprintf(w, "1.1")
+		fmt.Fprintf(w, "1.2")
 	})
 
 	defaultHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
