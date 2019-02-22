@@ -1,7 +1,7 @@
 FROM scratch
 WORKDIR /app
-COPY ./main ./
 COPY ./static ./static
 COPY ./templates ./templates
+COPY ./main ./
 EXPOSE 80
 CMD ["./main"]
