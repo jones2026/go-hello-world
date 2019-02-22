@@ -13,7 +13,8 @@ steps:
   settings:
     repo: jones2026/go-hello-world
     tags: latest
-    username: jones2026
+    username:
+      from_secret: docker_username
     password:
       from_secret: docker_password
   when:
