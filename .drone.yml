@@ -11,12 +11,11 @@ steps:
 - name: publish
   image: plugins/docker
   settings:
+    repo: jones2026/go-hello-world
     auto_tag: true
+    username: jones2026
     password:
       from_secret: docker_password
-    repo: drone/agent
-    username:
-      from_secret: docker_username
   when:
     event:
     - push
