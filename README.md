@@ -10,6 +10,7 @@ You can now push your new image to the registry:
 
 	$ docker push jones2026/go-hello-world
 
+
 ## Running your Hello World docker image
 Start your image:
 
