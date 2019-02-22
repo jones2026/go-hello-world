@@ -7,3 +7,17 @@ steps:
   image: golang:1.11
   commands:
   - go test
+  
+- name: publish
+  image: plugins/docker
+  settings:
+    auto_tag: true
+    password:
+      from_secret: docker_password
+    repo: drone/agent
+    username:
+      from_secret: docker_username
+  when:
+    event:
+    - push
+    - tag
