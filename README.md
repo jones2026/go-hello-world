@@ -1,3 +1,5 @@
+[![Build Status](https://cloud.drone.io/api/badges/jones2026/go-hello-world/status.svg)](https://cloud.drone.io/jones2026/go-hello-world)
+
 # go-hello-world
 Sample go web app to test docker deployments
 
