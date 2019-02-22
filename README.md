@@ -19,7 +19,6 @@ Start your image:
     The current machine timestamp in UTC: 2015-10-21T00:00:00.000000+00:00
 
 
-
 ## Endpoints
 
 |Endpoint|Parameters|Response|Description|
