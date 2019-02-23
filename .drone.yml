@@ -4,14 +4,12 @@ trigger:
   branch:
     - master
 steps:
-  -
-    name: test
+  - name: test
     image: 'golang:1.11'
     commands:
       - 'go test'
       - 'CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags ''-extldflags "-static"'' -o main .'
-  -
-    name: publish
+  - name: publish
     image: plugins/docker
     settings:
       repo: '${DRONE_REPO}'
