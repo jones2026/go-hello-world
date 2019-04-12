@@ -42,6 +42,8 @@ github.com/prometheus/procfs v0.0.0-20190328195117-af7bedc223fb h1:b2ty5K6b/bwlI
 github.com/prometheus/procfs v0.0.0-20190328195117-af7bedc223fb/go.mod h1:TjEm7ze935MbeOT/UhFTIMYKhuLP4wbCsTZCD3I8kEA=
 github.com/prometheus/procfs v0.0.0-20190403135556-ea9eea638872 h1:7MB1wdmKDZG4wSxIc6ytKPeDUk9c4vn69I87j0JamPA=
 github.com/prometheus/procfs v0.0.0-20190403135556-ea9eea638872/go.mod h1:TjEm7ze935MbeOT/UhFTIMYKhuLP4wbCsTZCD3I8kEA=
+github.com/prometheus/procfs v0.0.0-20190412122947-e22ddced7142 h1:xrCaa2Gd/YMsnA2aIXvQLA/bpAbpe0EHEVCNN0Leruk=
+github.com/prometheus/procfs v0.0.0-20190412122947-e22ddced7142/go.mod h1:TjEm7ze935MbeOT/UhFTIMYKhuLP4wbCsTZCD3I8kEA=
 github.com/sirupsen/logrus v1.2.0/go.mod h1:LxeOpSwHxABJmUn/MG1IvRgCAasNZTLOkJPxbbu5VWo=
 github.com/stretchr/objx v0.1.1/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/testify v1.2.2/go.mod h1:a8OnRcib4nhh0OaRAV+Yts87kKdq0PP7pXfy6kDkUVs=
