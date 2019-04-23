@@ -5,5 +5,5 @@ require (
 	github.com/prometheus/client_model v0.0.0-20190129233127-fd36f4220a90 // indirect
 	github.com/prometheus/common v0.3.0 // indirect
 	github.com/prometheus/procfs v0.0.0-20190416085510-8368d24ba045 // indirect
-	golang.org/x/sync v0.0.0-20190412193406-56d357773e84 // indirect
+	golang.org/x/sync v0.0.0-20190423025136-112230192c58 // indirect
 )
