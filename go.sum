@@ -75,6 +75,8 @@ github.com/prometheus/procfs v0.0.0-20190521135748-be78308d8a4f h1:ueZci80mMGxfJ
 github.com/prometheus/procfs v0.0.0-20190521135748-be78308d8a4f/go.mod h1:TjEm7ze935MbeOT/UhFTIMYKhuLP4wbCsTZCD3I8kEA=
 github.com/prometheus/procfs v0.0.0-20190522123626-bc1a522cf7b1 h1:6Rg1IpjyuwKIB5Yv2gKB72+LQbdvwetCcP1+6oL6KMc=
 github.com/prometheus/procfs v0.0.0-20190522123626-bc1a522cf7b1/go.mod h1:TjEm7ze935MbeOT/UhFTIMYKhuLP4wbCsTZCD3I8kEA=
+github.com/prometheus/procfs v0.0.0-20190523195237-a7aeb8df3389 h1:AHyOmcSK3SGq8p1dH2ylbX+Xv7v0sNU7D1zjQGyMmms=
+github.com/prometheus/procfs v0.0.0-20190523195237-a7aeb8df3389/go.mod h1:TjEm7ze935MbeOT/UhFTIMYKhuLP4wbCsTZCD3I8kEA=
 github.com/prometheus/tsdb v0.7.1/go.mod h1:qhTCs0VvXwvX/y3TZrWD7rabWM+ijKTux40TwIPHuXU=
 github.com/sirupsen/logrus v1.2.0/go.mod h1:LxeOpSwHxABJmUn/MG1IvRgCAasNZTLOkJPxbbu5VWo=
 github.com/spaolacci/murmur3 v0.0.0-20180118202830-f09979ecbc72/go.mod h1:JwIasOWyU6f++ZhiEuf87xNszmSA2myDM2Kzu9HwQUA=
