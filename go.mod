@@ -2,6 +2,6 @@ module github.com/jones2026/go-hello-world
 
 require (
 	github.com/prometheus/client_golang v0.9.3
-	github.com/prometheus/procfs v0.0.0-20190528152717-3cb620ac02d0 // indirect
+	github.com/prometheus/procfs v0.0.0-20190529165616-65bdadfa96ae // indirect
 	golang.org/x/sync v0.0.0-20190423025136-112230192c58 // indirect
 )
