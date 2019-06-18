@@ -9,12 +9,13 @@ steps:
     commands:
       - 'go test'
       - 'CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags ''-extldflags "-static"'' -o main .'
+      
   - name: publish
     image: plugins/docker
     settings:
-      repo: '${DRONE_REPO,,}'
+      auto_tag: true
       cache_from: '${DRONE_REPO,,}:latest'
-      tags: latest
+      repo: '${DRONE_REPO,,}'
       username:
         from_secret: docker_username
       password:
