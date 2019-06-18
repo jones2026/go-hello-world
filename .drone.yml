@@ -5,7 +5,7 @@ trigger:
     - master
 steps:
   - name: test
-    image: 'golang:1.11'
+    image: 'golang:1.12.6'
     commands:
       - 'go test'
       - 'CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags ''-extldflags "-static"'' -o main .'
