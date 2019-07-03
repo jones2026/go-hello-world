@@ -42,8 +42,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	
-	versionHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {		
+
+	versionHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "1.2")
 	})
 
@@ -77,14 +77,12 @@ func main() {
 	}
 
 	recordMetrics()
+	http.Handle("/stylesheets/", http.FileServer(http.Dir("./static")))
 
-	http.Handle("/stylesheets/", prometheus.InstrumentHandler(
-		"stylesheets", http.FileServer(http.Dir("./static"))))
-
-	http.Handle("/", prometheus.InstrumentHandler("default", defaultHandler))
-	http.Handle("/version", prometheus.InstrumentHandler("version", versionHandler))
-	http.Handle("/hello", prometheus.InstrumentHandler("hello", helloHandler))
-	http.Handle("/healthz", prometheus.InstrumentHandler("healthz", healthzHandler))
+	http.Handle("/", defaultHandler)
+	http.Handle("/version", promhttp.InstrumentMetricHandler(prometheus.DefaultRegisterer, versionHandler))
+	http.Handle("/hello", promhttp.InstrumentMetricHandler(prometheus.DefaultRegisterer, helloHandler))
+	http.Handle("/healthz", promhttp.InstrumentMetricHandler(prometheus.DefaultRegisterer, healthzHandler))
 	http.Handle("/metrics", promhttp.Handler())
 
 	fmt.Println("Listening")
