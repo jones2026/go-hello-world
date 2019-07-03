@@ -12,3 +12,5 @@
 *.out
 go-hello-world
 .vscode
+
+main
