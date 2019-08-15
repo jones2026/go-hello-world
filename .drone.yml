@@ -8,7 +8,7 @@ platform:
 
 steps:
 - name: test
-  image: golang:1.12.8
+  image: golang:1.12.9
   commands:
   - go test -v
   - "CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags '-extldflags \"-static\"' -o main ."
