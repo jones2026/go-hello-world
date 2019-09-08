@@ -8,9 +8,13 @@ platform:
 
 steps:
 - name: test
-  image: golang:1.12.9
+  image: golang:1.13
   commands:
-  - go test -v
+  - go test -v -cover
+
+- name: build
+  image: golang:1.13
+  commands:
   - "CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags '-extldflags \"-static\"' -o main ."
 
 - name: publish
