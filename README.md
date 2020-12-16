@@ -1,6 +1,6 @@
-![Drone (cloud)](https://img.shields.io/drone/build/jones2026/go-hello-world)
-![Docker Image Size (latest semver)](https://img.shields.io/docker/image-size/jones2026/go-hello-world)
-![Docker Pulls](https://img.shields.io/docker/pulls/jones2026/go-hello-world)
+[![Drone (cloud)](https://img.shields.io/drone/build/jones2026/go-hello-world)](https://cloud.drone.io/jones2026/go-hello-world)
+[![Docker Image Size (latest semver)](https://img.shields.io/docker/image-size/jones2026/go-hello-world)](https://hub.docker.com/r/jones2026/go-hello-world/tags?page=1&ordering=last_updated)
+[![Docker Pulls](https://img.shields.io/docker/pulls/jones2026/go-hello-world)](https://hub.docker.com/r/jones2026/go-hello-world)
 # go-hello-world
 Sample go web app to test docker deployments
 

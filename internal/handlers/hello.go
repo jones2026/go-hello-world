@@ -1,4 +1,4 @@
-package internal/handlers
+package handlers
 
 import (
 	"net/http"
