@@ -1,6 +1,7 @@
 ---
 kind: pipeline
 name: default
+type: docker
 
 platform:
   os: linux
@@ -11,6 +12,11 @@ steps:
   image: golang:1.15
   commands:
   - go test -v -cover
+
+- name: lint
+  image: golangci/golangci-lint:v1.33.0
+  commands:
+  - golangci-lint run
 
 - name: build
   image: golang:1.15
@@ -26,5 +32,9 @@ steps:
     repo: ${DRONE_REPO,,}
     username:
       from_secret: docker_username
+
+trigger:
+  branch:
+  - main
 
 ...
