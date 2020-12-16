@@ -4,43 +4,25 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
-
-	"github.com/jones2026/go-hello-world/healthz"
 )
 
-func TestHealthCheckHandlerErrorThrowing(t *testing.T) {
-	req, err := http.NewRequest("GET", "/healthz?error=FakeError", nil)
-	if err != nil {
-		t.Fatal(err)
-	}
-	rr := httptest.NewRecorder()
-	hc := &healthz.Config{
-		Hostname: "some fake host",
-	}
-	handler, err := healthz.Handler(hc)
-
-	handler.ServeHTTP(rr, req)
-
-	if status := rr.Code; status != http.StatusInternalServerError {
-		t.Errorf("handler returned wrong status code: got %v want %v",
-			status, http.StatusInternalServerError)
-	}
-}
-
-func TestHealthCheckHandlerHappyPath(t *testing.T) {
+func TestHealthCheckHandler(t *testing.T) {
+	// Create a request to pass to our handler. We don't have any query parameters for now, so we'll
+	// pass 'nil' as the third parameter.
 	req, err := http.NewRequest("GET", "/healthz", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
 
+	// We create a ResponseRecorder (which satisfies http.ResponseWriter) to record the response.
 	rr := httptest.NewRecorder()
-	hc := &healthz.Config{
-		Hostname: "some fake host",
-	}
-	handler, err := healthz.Handler(hc)
+	handler := http.HandlerFunc(HealthHandler)
 
+	// Our handlers satisfy http.Handler, so we can call their ServeHTTP method
+	// directly and pass in our Request and ResponseRecorder.
 	handler.ServeHTTP(rr, req)
 
+	// Check the status code is what we expect.
 	if status := rr.Code; status != http.StatusOK {
 		t.Errorf("handler returned wrong status code: got %v want %v",
 			status, http.StatusOK)
