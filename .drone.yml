@@ -15,7 +15,8 @@ steps:
 - name: build
   image: golang:1.15
   commands:
-  - CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags '-extldflags "-static"' -o main .
+  - CGO_ENABLED=0 GOOS=linux go build
+  - exit 1
 
 - name: publish
   image: plugins/docker
