@@ -16,8 +16,6 @@ type healthResponse struct {
 
 //Health returns 200 status code
 func Health(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(http.StatusOK)
-	w.Header().Set("Content-Type", "application/json")
 	metadata := make(map[string]string)
 	metadata["timestamp"] = time.Now().Format(time.Stamp)
 	metadata["go_version"] = runtime.Version()
@@ -38,5 +36,8 @@ func Health(w http.ResponseWriter, r *http.Request) {
 		log.Fatalln(err.Error())
 	}
 
-	w.Write(data)
+	_, err = w.Write(data)
+	if err != nil {
+		log.Fatalf(err.Error())
+	}
 }
