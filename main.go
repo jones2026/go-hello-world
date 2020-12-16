@@ -7,7 +7,7 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
-	"github.com/jones2026/go-hello-world/handlers"
+	"github.com/jones2026/go-hello-world/internal/handlers"
 )
 
 func main() {
