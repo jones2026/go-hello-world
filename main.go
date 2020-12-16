@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -23,15 +22,10 @@ func main() {
 
 	r := chi.NewRouter()
 
-	// A good base middleware stack
 	r.Use(middleware.RequestID)
 	r.Use(middleware.RealIP)
 	r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)
-
-	// Set a timeout value on the request context (ctx), that will signal
-	// through ctx.Done() that the request has timed out and further
-	// processing should be stopped.
 	r.Use(middleware.Timeout(60 * time.Second))
 
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
@@ -40,8 +34,9 @@ func main() {
 
 	r.Get("/healthz", HealthHandler)
 
-	fmt.Println("Listening")
-	log.Fatalln(http.ListenAndServe(":8080", r))
+	port := ":8080"
+	log.Println("Listening on port:", port)
+	log.Fatalln(http.ListenAndServe(port, r))
 }
 
 //HealthHandler returns 200 status code
