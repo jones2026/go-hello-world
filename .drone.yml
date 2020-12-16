@@ -15,7 +15,7 @@ steps:
 - name: build
   image: golang:1.15
   commands:
-  - CGO_ENABLED=0 GOOS=linux go build
+  - CGO_ENABLED=0 GOOS=linux go build -o main
 
 - name: publish
   image: plugins/docker
