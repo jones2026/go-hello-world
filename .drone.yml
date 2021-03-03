@@ -14,7 +14,7 @@ steps:
   - go test ./... -cover -v
 
 - name: lint
-  image: golangci/golangci-lint:v1.37.1
+  image: golangci/golangci-lint:v1.38.0
   commands:
   - golangci-lint run
 
